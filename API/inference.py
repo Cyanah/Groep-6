@@ -6,7 +6,7 @@ import torchvision.transforms as transforms
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model_path = "python_files/model.pkl"
+model_path = "model.pkl"
 model = torch.load(model_path, map_location=device)
 
 model.eval()

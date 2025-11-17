@@ -46,6 +46,7 @@ with col3:
         if img:
             image_placeholder.image(img, use_container_width=True)
 
+image_placeholder = st.empty()
 if selected:
     img = get_random_image_from_zip(selected)
     if img:

@@ -10,6 +10,8 @@ CLEAN_IMAGES_ZIP = "image_files/clean_images.zip"
 
 st.title("Image Viewer")
 
+st.write("In deze site zijn er plaatjes van cijfers ikgeladen. Echter zijn er een aantal vertekende plaatjes aanwezig. Deze worden geprobeerd geïdentificeert te worden en dan het midden te blurren. Echte resultaten worden minder geblurred gemaakt.")
+
 def get_random_image_from_zip(zip_path: str) -> Image.Image:
     with zipfile.ZipFile(zip_path, 'r') as z:
         files = [f for f in z.namelist()

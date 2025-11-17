@@ -22,10 +22,17 @@ def preprocess(img: Image.Image) -> torch.Tensor:
   return tensor.to(device)
 
 def run_autoencoder(img: Image.Image):
-  x = preprocess(img)
-  with torch.no_grad():
-    reconstructed = model(x)
-  x_np = x.cpu().numpy()
-  recon_np = reconstructed.cpu().numpy()
-  mse = np.mean((x_np - recon_np) ** 2)
-  return float(mse)
+    x = preprocess(img)
+    with torch.no_grad():
+        reconstructed = model(x)
+    x_np = x.cpu().numpy()
+    recon_np = reconstructed.cpu().numpy()
+    mse = np.mean((x_np - recon_np) ** 2)
+    
+    recon_img = reconstructed.squeeze(0).squeeze(0).cpu()
+    recon_pil = transforms.ToPILImage()(recon_img)
+    
+    threshold = 0.005
+    guess = "Distorted" if mse > threshold else "Clean"
+    
+    return float(mse), recon_pil, guess

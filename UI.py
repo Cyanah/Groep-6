@@ -25,23 +25,28 @@ def get_random_image_from_zip(zip_path: str) -> Image.Image:
             img = Image.open(BytesIO(img_file.read())).convert("RGB")
             return img
 
-image_placeholder = st.empty()
 col1, col2, col3 = st.columns(3)
+selected = None
 
 with col1:
-    if st.button("Show Random All Image"):
+    if st.button("Random All Image"):
         img = get_random_image_from_zip(ALL_IMAGES_ZIP)
         if img:
             image_placeholder.image(img, use_container_width=True)
 
 with col2:
-    if st.button("Show Random Distorted Image"):
+    if st.button("Random Distorted Image"):
         img = get_random_image_from_zip(DISTORTED_IMAGES_ZIP)
         if img:
             image_placeholder.image(img, use_container_width=True)
 
 with col3:
-    if st.button("Show Random Clean Image"):
+    if st.button("Random Clean Image"):
         img = get_random_image_from_zip(CLEAN_IMAGES_ZIP)
         if img:
             image_placeholder.image(img, use_container_width=True)
+
+if selected:
+    img = get_random_image_from_zip(selected)
+    if img:
+        image_placeholder.image(img, use_container_width=True)

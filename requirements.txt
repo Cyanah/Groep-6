@@ -4,3 +4,7 @@ plotly
 pandas
 numpy
 scikit-learn
+streamlit
+fastapi
+uvicorn
+requests
